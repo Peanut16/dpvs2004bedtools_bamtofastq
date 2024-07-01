@@ -2,7 +2,11 @@
 import os
 import time
 import unittest
+import subprocess
+import sys
+import pathlib
 from configparser import ConfigParser
+from io import BytesIO
 
 from dpvs2004bedtools_bamtofastq.dpvs2004bedtools_bamtofastqImpl import dpvs2004bedtools_bamtofastq
 from dpvs2004bedtools_bamtofastq.dpvs2004bedtools_bamtofastqServer import MethodContext
@@ -65,3 +69,23 @@ class dpvs2004bedtools_bamtofastqTest(unittest.TestCase):
         # self.assertEqual(ret[...], ...) or other unittest methods
         ret = self.serviceImpl.run_dpvs2004bedtools_bamtofastq(self.ctx, {'workspace_name': self.wsName,
                                                              'parameter_1': 'Hello World!'})
+    def test_bam_to_fastq(self):
+        bam_filename = 'wgEncodeUwRepliSeqBg02esG1bAlnRep1.bam'
+        with open(bam_filename, 'rb') as file:
+            bam_data = file.read().decode('utf-8', 'ignore')
+        print(bam_data)
+
+        open('filename_end1.fq', 'w').close()
+        open('filename_end2.fq', 'w').close()
+
+        with open('filename_end2.fq', 'w') as f:
+            result = subprocess.Popen(['bedtools', 'bamtofastq', '-i', bam_filename, '-fq', 
+                                       'filename_end1.fq', '-fq2', '/dev/stdout'], stdout=f)
+            result.wait()
+
+        with open('filename_end2.fq', 'r') as fq_together:
+            print(fq_together.read())
+        if result.returncode == 0:
+            print("Command executed successfully")
+        else:
+            print(f"Error occurred while executing command ")
