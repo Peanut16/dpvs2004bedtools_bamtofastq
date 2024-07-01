@@ -3,10 +3,7 @@ import os
 import time
 import unittest
 import subprocess
-import sys
-import pathlib
 from configparser import ConfigParser
-from io import BytesIO
 
 from dpvs2004bedtools_bamtofastq.dpvs2004bedtools_bamtofastqImpl import dpvs2004bedtools_bamtofastq
 from dpvs2004bedtools_bamtofastq.dpvs2004bedtools_bamtofastqServer import MethodContext
