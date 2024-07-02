@@ -11,17 +11,34 @@
     },
     "parameters": [ 
         {
-            "id": "parameter_1",
-            "optional": true,
+            "id": "file_type",
+            "optional": false,
             "advanced": false,
             "allow_multiple": false,
             "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types": [ ]
+            "field_type": "dropdown",
+            "dropdown_options": {
+                "options": [
+                    {
+                        "display": "BAM", 
+                        "value": "bam"
+                    }
+                 ]
             }
+        },
+    
+    {
+        "id": "model_file",
+        "optional": false,
+        "advanced": false,
+        "allow_multiple": false,
+        "default_values": [""],
+        "field_type": "dynamic_dropdown",
+        "dynamic_dropdown_options": {
+            "data_source": "ftp_staging"
         }
-    ],
+    }
+    ],    
     "behavior": {
         "service-mapping": {
             "url": "",
@@ -35,8 +52,8 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "parameter_1",
-                    "target_property": "parameter_1"
+                    "input_parameter": "file_type",
+                    "target_property": "file_type"
                 }
             ],
             "output_mapping": [

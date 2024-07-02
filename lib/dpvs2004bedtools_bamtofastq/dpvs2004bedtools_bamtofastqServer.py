@@ -342,6 +342,10 @@ class Application(object):
                              name='dpvs2004bedtools_bamtofastq.run_dpvs2004bedtools_bamtofastq',
                              types=[dict])
         self.method_authentication['dpvs2004bedtools_bamtofastq.run_dpvs2004bedtools_bamtofastq'] = 'required'  # noqa
+        self.rpc_service.add(impl_dpvs2004bedtools_bamtofastq.run-dpvs2004bedtools_bamtofastq,
+                             name='dpvs2004bedtools_bamtofastq.run-dpvs2004bedtools_bamtofastq',
+                             types=[dict])
+        self.method_authentication['dpvs2004bedtools_bamtofastq.run-dpvs2004bedtools_bamtofastq'] = 'required'  # noqa
         self.rpc_service.add(impl_dpvs2004bedtools_bamtofastq.status,
                              name='dpvs2004bedtools_bamtofastq.status',
                              types=[dict])

@@ -23,8 +23,8 @@ class dpvs2004bedtools_bamtofastq:
     # the latter method is running.
     ######################################### noqa
     VERSION = "0.0.1"
-    GIT_URL = ""
-    GIT_COMMIT_HASH = ""
+    GIT_URL = "https://github.com/Peanut16/dpvs2004bedtools_bamtofastq.git"
+    GIT_COMMIT_HASH = "7be5c4dc4d83c12c2435f47e57cd2e8a4303f523"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -64,6 +64,25 @@ class dpvs2004bedtools_bamtofastq:
         # At some point might do deeper type checking...
         if not isinstance(output, dict):
             raise ValueError('Method run_dpvs2004bedtools_bamtofastq return value ' +
+                             'output is not type dict as required.')
+        # return the results
+        return [output]
+
+    def run-dpvs2004bedtools_bamtofastq(self, ctx, params):
+        """
+        New app which takes a bam file and converts it into a fastq file
+        :param params: instance of mapping from String to unspecified object
+        :returns: instance of type "ReportResults" -> structure: parameter
+           "report_name" of String, parameter "report_ref" of String
+        """
+        # ctx is the context object
+        # return variables are: output
+        #BEGIN run-dpvs2004bedtools_bamtofastq
+        #END run-dpvs2004bedtools_bamtofastq
+
+        # At some point might do deeper type checking...
+        if not isinstance(output, dict):
+            raise ValueError('Method run-dpvs2004bedtools_bamtofastq return value ' +
                              'output is not type dict as required.')
         # return the results
         return [output]
