@@ -2,6 +2,7 @@
 #BEGIN_HEADER
 import logging
 import os
+import subprocess
 
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
@@ -51,14 +52,35 @@ class dpvs2004bedtools_bamtofastq:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_dpvs2004bedtools_bamtofastq
-        report = KBaseReport(self.callback_url)
-        report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': params['parameter_1']},
-                                                'workspace_name': params['workspace_name']})
-        output = {
-            'report_name': report_info['name'],
-            'report_ref': report_info['ref'],
-        }
+        #for name in ['file_type', 'workspace_name']:
+        #    if name not in params:
+        #        raise ValueError('Parameter "' + name + '" is required but missing')
+        #for option in ['dropdown_options']:
+        #    if option['value'] != option['file_type']:
+        #        raise ValueError('It must be a BAM file')
+        
+        #report = KBaseReport(self.callback_url)
+        #report_info = report.create({'report': {'objects_created':[],
+        #                                        'text_message': params['filename_end2.fq']},
+        #                                        'workspace_name': params['workspace_name']})
+        
+        bam_filename = params['bam_file']
+        with open(bam_filename, 'rb') as file:
+            bam_data = file.read().decode('utf-8', 'ignore')
+        print(bam_data)
+        open('filename_end1.fq', 'w').close()
+        open('filename_end2.fq', 'w').close()
+        with open('filename_end2.fq', 'w') as f:
+            result = subprocess.Popen(['bedtools', 'bamtofastq', '-i', bam_filename, '-fq', 
+                                       'filename_end1.fq', '-fq2', '/dev/stdout'], stdout=f)
+
+        #output = {
+        #    'report_name': report_info['name'],
+        #    'report_ref': report_info['ref'],
+        #}
+
+        output = {}
+
         #END run_dpvs2004bedtools_bamtofastq
 
         # At some point might do deeper type checking...
@@ -68,7 +90,7 @@ class dpvs2004bedtools_bamtofastq:
         # return the results
         return [output]
 
-    def run-dpvs2004bedtools_bamtofastq(self, ctx, params):
+    def run_dpvs2004bedtools_bamtofastq(self, ctx, params):
         """
         New app which takes a bam file and converts it into a fastq file
         :param params: instance of mapping from String to unspecified object

@@ -24,19 +24,12 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    file_type :
-        ui-name : Model file type
+    bam_file :
+        ui-name : BAM file type
         short-hint : |
             The first parameter
         long-hint  : |
-            Format of model file to upload
-
-    model_file :
-        ui-name : Model file path (reactions if TSV)
-        short-hint : |
-            Select a model file in BAM format.
-        long-hint  : |
-            Select a model file in BAM format.
+            Format of BAM file to upload
 
 description : |
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar efficitur felis, quis tincidunt sem congue at. Vivamus ornare feugiat faucibus. Fusce tincidunt mattis nunc, nec varius purus convallis quis. Nulla facilisi. In at magna dolor. Suspendisse sit amet felis at arcu auctor dapibus vitae pharetra dui. Nam semper mi quis tortor fermentum mollis. Donec a arcu pharetra, rutrum dolor vitae, rutrum mauris. Donec ornare fringilla sagittis. Nam laoreet est in elementum malesuada. Vestibulum id mi eget urna hendrerit feugiat. Donec et ultrices nulla. Phasellus diam eros, dapibus at tempus nec, semper vel ante.</p>

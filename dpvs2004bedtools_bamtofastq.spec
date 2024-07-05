@@ -9,7 +9,7 @@ module dpvs2004bedtools_bamtofastq {
     } ReportResults;
 
     /*
-        This example function accepts any number of parameters and returns results in a KBaseReport
+        An app that takes a bam file and converts it into fastq
     */
     funcdef run_dpvs2004bedtools_bamtofastq(mapping<string,UnspecifiedObject> params) returns (ReportResults output) authentication required;
 

@@ -4,6 +4,7 @@ import time
 import unittest
 import subprocess
 from configparser import ConfigParser
+import json
 
 from dpvs2004bedtools_bamtofastq.dpvs2004bedtools_bamtofastqImpl import dpvs2004bedtools_bamtofastq
 from dpvs2004bedtools_bamtofastq.dpvs2004bedtools_bamtofastqServer import MethodContext
@@ -64,8 +65,23 @@ class dpvs2004bedtools_bamtofastqTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
+        with self.assertRaises(KeyError):
+            self.serviceImpl.run_dpvs2004bedtools_bamtofastq(self.ctx, {'workspace_name': self.wsName})
+
+    def test_bam2fastq(self):
+        # Prepare test objects in workspace if needed using
+        # self.getWsClient().save_objects({'workspace': self.getWsName(),
+        #                                  'objects': []})
+        #
+        # Run your method by
+        # ret = self.getImpl().your_method(self.getContext(), parameters...)
+        #
+        # Check returned data with
+        # self.assertEqual(ret[...], ...) or other unittest methods
+        bam_filename = 'wgEncodeUwRepliSeqBg02esG1bAlnRep1.bam'
         ret = self.serviceImpl.run_dpvs2004bedtools_bamtofastq(self.ctx, {'workspace_name': self.wsName,
-                                                             'parameter_1': 'Hello World!'})
+                                                             'bam_file' : bam_filename})
+
     def test_bam_to_fastq(self):
         bam_filename = 'wgEncodeUwRepliSeqBg02esG1bAlnRep1.bam'
         with open(bam_filename, 'rb') as file:
